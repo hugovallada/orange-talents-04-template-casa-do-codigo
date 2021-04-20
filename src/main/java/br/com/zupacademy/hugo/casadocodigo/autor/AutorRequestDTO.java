@@ -1,5 +1,7 @@
 package br.com.zupacademy.hugo.casadocodigo.autor;
 
+import br.com.zupacademy.hugo.casadocodigo.util.validators.UniqueEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -11,6 +13,7 @@ public class AutorRequestDTO {
 
     @NotBlank
     @Email
+    @UniqueEmail
     private String email;
 
     @NotBlank
