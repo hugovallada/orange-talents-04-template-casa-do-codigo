@@ -1,6 +1,7 @@
 package br.com.zupacademy.hugo.casadocodigo.autor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Autor {
@@ -17,6 +18,8 @@ public class Autor {
 
     @Column(nullable = false, length = 400)
     private String descricao;
+
+    private LocalDateTime instanteRegistro = LocalDateTime.now();
 
     public Autor(String nome, String email, String descricao) {
         this.nome = nome;
