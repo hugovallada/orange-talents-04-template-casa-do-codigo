@@ -1,7 +1,8 @@
 package br.com.zupacademy.hugo.casadocodigo.autor;
 
-import javax.validation.constraints.*;
-import java.time.LocalDateTime;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class AutorRequestDTO {
 
@@ -15,7 +16,6 @@ public class AutorRequestDTO {
     @NotBlank
     @Size(max = 400)
     private String descricao;
-
 
     public AutorRequestDTO(String nome, String email, String descricao) {
         this.nome = nome;
