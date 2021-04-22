@@ -2,6 +2,7 @@ package br.com.zupacademy.hugo.casadocodigo.livro;
 
 import br.com.zupacademy.hugo.casadocodigo.autor.Autor;
 import br.com.zupacademy.hugo.casadocodigo.categoria.Categoria;
+import br.com.zupacademy.hugo.casadocodigo.util.validators.ExistId;
 import br.com.zupacademy.hugo.casadocodigo.util.validators.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -43,9 +44,11 @@ public class LivroRequestDTO {
     private LocalDate dataDePublicacao;
 
     @NotNull
+    @ExistId(targetClass = Categoria.class, fieldName = "id")
     private Long categoriaId;
 
     @NotNull
+    @ExistId(targetClass = Autor.class, fieldName = "id")
     private Long autorId;
 
     public LivroRequestDTO(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroDePaginas, String isbn, @JsonProperty("dataDePublicacao") LocalDate dataDePublicacao, Long categoriaId, Long autorId) {
