@@ -5,6 +5,7 @@ import br.com.zupacademy.hugo.casadocodigo.categoria.Categoria;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -42,9 +43,11 @@ public class Livro {
     private LocalDate dataDePublicacao;
 
     @ManyToOne
+    @Valid
     private Categoria categoria;
 
     @ManyToOne
+    @Valid
     private Autor autor;
 
     /**
