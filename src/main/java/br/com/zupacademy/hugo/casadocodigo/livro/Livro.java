@@ -43,10 +43,12 @@ public class Livro {
     private LocalDate dataDePublicacao;
 
     @ManyToOne
+    @NotNull
     @Valid
     private Categoria categoria;
 
     @ManyToOne
+    @NotNull
     @Valid
     private Autor autor;
 
@@ -57,7 +59,10 @@ public class Livro {
     public Livro() {
     }
 
-    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroDePaginas, String isbn, LocalDate dataDePublicacao, Categoria categoria, Autor autor) {
+    public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String sumario,
+                 @NotNull @Min(20) BigDecimal preco, @NotNull @Min(100) Integer numeroDePaginas, @NotBlank String isbn,
+                 @NotNull @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING) LocalDate dataDePublicacao,
+                 @NotNull @Valid Categoria categoria, @NotNull @Valid Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
