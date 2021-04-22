@@ -1,6 +1,6 @@
 package br.com.zupacademy.hugo.casadocodigo.categoria;
 
-import br.com.zupacademy.hugo.casadocodigo.util.validators.UniqueNome;
+import br.com.zupacademy.hugo.casadocodigo.util.validators.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 import javax.validation.constraints.NotBlank;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 public class CategoriaRequestDTO {
 
     @NotBlank
-    @UniqueNome
+    @UniqueValue(targetClass = Categoria.class, fieldName = "nome")
     private String nome;
 
     @JsonCreator
