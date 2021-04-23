@@ -61,6 +61,10 @@ public class Cliente {
     public Cliente(){
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setEstado(Estado estado) {
         Assert.state(estado.pertenceAoPais(this.pais), "O estado  não pertence ao pais");
         this.estado = estado;

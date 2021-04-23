@@ -27,8 +27,10 @@ public class ClienteController {
 
     @PostMapping
     @Transactional
-    public void cadastrarCliente(@RequestBody @Valid NovoClienteRequestDTO clienteRequestDTO){
+    public ClienteIdResponseDTO cadastrarCliente(@RequestBody @Valid NovoClienteRequestDTO clienteRequestDTO){
         Cliente cliente = clienteRequestDTO.toCliente(entityManager);
         entityManager.persist(cliente);
+
+        return new ClienteIdResponseDTO(cliente);
     }
 }
