@@ -1,5 +1,6 @@
 package br.com.zupacademy.hugo.casadocodigo.livro;
 
+import br.com.zupacademy.hugo.casadocodigo.autor.DetalheAutorResponseDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.math.BigDecimal;
@@ -22,9 +23,7 @@ public class DetalheLivroResponseDTO {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataDePublicacao;
 
-    private String autorNome;
-
-    private String autorDescricao;
+    private DetalheAutorResponseDTO autor;
 
     public DetalheLivroResponseDTO(Livro livro){
         this.titulo = livro.getTitulo();
@@ -34,8 +33,7 @@ public class DetalheLivroResponseDTO {
         this.numeroDePaginas = livro.getNumeroDePaginas();
         this.isbn = livro.getIsbn();
         this.dataDePublicacao = livro.getDataDePublicacao();
-        this.autorNome = livro.getAutor().getNome();
-        this.autorDescricao = livro.getAutor().getDescricao();
+        this.autor = new DetalheAutorResponseDTO(livro.getAutor());
     }
 
     public String getTitulo() {
@@ -66,12 +64,7 @@ public class DetalheLivroResponseDTO {
         return dataDePublicacao;
     }
 
-    public String getAutorNome() {
-        return autorNome;
+    public DetalheAutorResponseDTO getAutor() {
+        return autor;
     }
-
-    public String getAutorDescricao() {
-        return autorDescricao;
-    }
-
 }

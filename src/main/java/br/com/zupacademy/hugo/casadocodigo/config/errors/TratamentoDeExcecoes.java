@@ -36,7 +36,7 @@ public class TratamentoDeExcecoes {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public String handleEntityNotFoundException(EntityNotFoundException exception){
         return exception.getMessage();
     }
