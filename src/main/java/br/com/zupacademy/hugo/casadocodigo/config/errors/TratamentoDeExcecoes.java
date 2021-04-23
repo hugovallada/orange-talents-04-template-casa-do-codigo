@@ -49,4 +49,10 @@ public class TratamentoDeExcecoes {
         return exception.getMessage();
     }
 
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public String handleIllegalStateException(IllegalStateException exception){
+        return exception.getMessage();
+    }
+
 }

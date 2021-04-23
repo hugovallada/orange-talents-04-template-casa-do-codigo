@@ -2,6 +2,7 @@ package br.com.zupacademy.hugo.casadocodigo.cliente;
 
 import br.com.zupacademy.hugo.casadocodigo.estado.Estado;
 import br.com.zupacademy.hugo.casadocodigo.pais.Pais;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -53,7 +54,15 @@ public class Cliente {
         this.cep = cep;
     }
 
+    /**
+     * @deprecated Construtor de uso exclusivo da JPA
+     */
+    @Deprecated
+    public Cliente(){
+    }
+
     public void setEstado(Estado estado) {
+        Assert.state(estado.pertenceAoPais(this.pais), "O estado  não pertence ao pais");
         this.estado = estado;
     }
 }

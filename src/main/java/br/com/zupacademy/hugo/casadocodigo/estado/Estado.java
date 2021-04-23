@@ -25,6 +25,12 @@ public class Estado {
         this.pais = pais;
     }
 
+    /**
+     * @deprecated Construtor de uso exclusivo da JPA
+     */
+    @Deprecated
+    public Estado(){}
+
     @Override
     public String toString() {
         return "Estado{" +
@@ -32,5 +38,9 @@ public class Estado {
                 ", nome='" + nome + '\'' +
                 ", pais=" + pais +
                 '}';
+    }
+
+    public boolean pertenceAoPais(Pais pais){
+        return pais == this.pais;
     }
 }

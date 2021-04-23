@@ -56,25 +56,18 @@ public class NovoClienteRequestDTO {
        Cliente cliente = new Cliente(email, nome, sobrenome, documento, endereco, complemento, cidade, pais, telefone, cep);
 
        if(estado != null){
-           // Validar Estado pertence ao pais
            cliente.setEstado(estado);
        }
 
        return cliente;
     }
+
+    public Long getEstadoId() {
+        return estadoId;
+    }
+
+    public Long getPaisId() {
+        return paisId;
+    }
 }
 
-/**
- * email
- * nome
- * sobrenome
- * documento(cpf/cnpj)
- * endereco
- * complemento
- * cidade
- * pais
- * estado(caso aquele pais tenha estado)
- * telefone
- * cep
- * Restrição
- */
