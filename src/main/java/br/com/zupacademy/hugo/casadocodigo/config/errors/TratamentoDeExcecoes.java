@@ -22,22 +22,30 @@ public class TratamentoDeExcecoes {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ApiError> hanldeMethodArgumentNotValid(MethodArgumentNotValidException exception){
+    public List<ApiError> hanldeMethodArgumentNotValid(MethodArgumentNotValidException exception) {
         List<ApiError> errors = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
-       fieldErrors.forEach(fieldError -> {
-           errors.add(new ApiError(
-                   fieldError.getField(),
-                   messageSource.getMessage(fieldError, LocaleContextHolder.getLocale())));
-       });
+
+        fieldErrors.forEach(fieldError -> {
+            errors.add(new ApiError(
+                    fieldError.getField(),
+                    messageSource.getMessage(fieldError, LocaleContextHolder.getLocale())));
+        });
+
+        exception.getBindingResult().getGlobalErrors()
+                .forEach(globalError -> {
+                    errors.add(new ApiError(
+                            globalError.getObjectName(),
+                            messageSource.getMessage(globalError, LocaleContextHolder.getLocale())));
+                });
 
         return errors;
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public String handleEntityNotFoundException(EntityNotFoundException exception){
+    public String handleEntityNotFoundException(EntityNotFoundException exception) {
         return exception.getMessage();
     }
 
