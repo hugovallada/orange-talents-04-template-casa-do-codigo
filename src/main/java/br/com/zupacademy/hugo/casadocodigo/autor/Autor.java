@@ -58,4 +58,12 @@ public class Autor {
                 ", instanteRegistro=" + instanteRegistro +
                 '}';
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }

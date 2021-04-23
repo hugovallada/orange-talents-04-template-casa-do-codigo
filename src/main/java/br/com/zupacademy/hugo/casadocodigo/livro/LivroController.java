@@ -3,6 +3,7 @@ package br.com.zupacademy.hugo.casadocodigo.livro;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
@@ -31,5 +32,16 @@ public class LivroController {
         List<Livro> livros = query.getResultList();
 
         return livros.stream().map(ListagemInfoLivroResponseDTO::new).collect(Collectors.toList());
+    }
+
+    @GetMapping("/{id}")
+    public DetalheLivroResponseDTO buscarLivroPorId(@PathVariable Long id){
+        Livro livro = entityManager.find(Livro.class, id);
+
+        if (livro == null) {
+            throw new EntityNotFoundException("Não foi possível encontrar um livro com o id " + id);
+        }
+
+        return new DetalheLivroResponseDTO(livro);
     }
 }
