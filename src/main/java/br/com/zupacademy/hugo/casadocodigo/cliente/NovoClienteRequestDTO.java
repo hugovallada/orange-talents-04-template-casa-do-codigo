@@ -3,6 +3,9 @@ package br.com.zupacademy.hugo.casadocodigo.cliente;
 import br.com.zupacademy.hugo.casadocodigo.estado.Estado;
 import br.com.zupacademy.hugo.casadocodigo.pais.Pais;
 import br.com.zupacademy.hugo.casadocodigo.util.validators.UniqueValue;
+import org.hibernate.validator.internal.constraintvalidators.hv.br.CNPJValidator;
+import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.Email;
@@ -68,6 +71,18 @@ public class NovoClienteRequestDTO {
 
     public Long getPaisId() {
         return paisId;
+    }
+
+    public boolean documentoValido(){
+        Assert.hasLength(documento, "Não deve validar o documento se ele não estiver preenchido");
+
+        CPFValidator cpfValidator = new CPFValidator();
+        cpfValidator.initialize(null);
+
+        CNPJValidator cnpjValidator = new CNPJValidator();
+        cnpjValidator.initialize(null);
+
+        return cpfValidator.isValid(documento, null) || cnpjValidator.isValid(documento, null);
     }
 }
 

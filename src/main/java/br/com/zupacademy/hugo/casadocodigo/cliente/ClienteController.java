@@ -1,6 +1,7 @@
 package br.com.zupacademy.hugo.casadocodigo.cliente;
 
 import br.com.zupacademy.hugo.casadocodigo.util.validators.EstadoNaoNuloSeExistir;
+import br.com.zupacademy.hugo.casadocodigo.util.validators.ValidarDocumento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,12 @@ public class ClienteController {
     @Autowired
     private EstadoNaoNuloSeExistir estadoNaoNuloSeExistir;
 
+    @Autowired
+    private ValidarDocumento validarDocumento;
+
     @InitBinder
     public void init(WebDataBinder binder){
-        binder.addValidators(estadoNaoNuloSeExistir);
+        binder.addValidators(estadoNaoNuloSeExistir, validarDocumento);
     }
 
     @PostMapping
